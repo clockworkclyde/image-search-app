@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Image Search App</string>
+    <string name="save_photo">Сохранить</string>
+    <string name="saving_progress">Происходит сохранение...</string>
 </resources>

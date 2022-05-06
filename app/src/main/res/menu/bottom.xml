@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/ic_baseline_photo_library_24"
+        android:title="Gallery"
+        android:id="@+id/galleryFragment"/>
+
+    <item
+        android:icon="@drawable/ic_baseline_cloud_download_24"
+        android:title="Saved"
+        android:id="@+id/savedGalleryFragment"/>
+
+</menu>
