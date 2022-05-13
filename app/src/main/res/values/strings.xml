@@ -2,4 +2,6 @@
     <string name="app_name">Image Search App</string>
     <string name="save_photo">Сохранить</string>
     <string name="saving_progress">Происходит сохранение...</string>
+    <string name="photo_detail_transition_name">photo_detail</string>
+    <string name="gallery_transition_name">gallery_transition</string>
 </resources>

@@ -7,28 +7,30 @@
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="com.codinginflow.imagesearchapp.ui.gallery.GalleryFragment"
+        android:name="com.clockworkclyde.imagesearchapp.ui.gallery.GalleryFragment"
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_gallery" >
-        <action
-            android:id="@+id/action_galleryFragment_to_detailsFragment2"
-            app:destination="@id/detailsFragment2" />
+
         <action
             android:id="@+id/action_galleryFragment_to_savedGalleryFragment"
             app:destination="@id/savedGalleryFragment" />
+        <action
+            android:id="@+id/action_galleryFragment_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+
     </fragment>
     <fragment
         android:id="@+id/detailsFragment2"
-        android:name="com.codinginflow.imagesearchapp.ui.details.DetailsFragment"
+        android:name="com.clockworkclyde.imagesearchapp.ui.details.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <argument
             android:name="photo"
-            app:argType="com.codinginflow.imagesearchapp.models.UnsplashPhoto" />
+            app:argType="com.clockworkclyde.imagesearchapp.models.UnsplashPhoto" />
     </fragment>
     <fragment
         android:id="@+id/savedGalleryFragment"
-        android:name="com.codinginflow.imagesearchapp.ui.saved.SavedGalleryFragment"
+        android:name="com.clockworkclyde.imagesearchapp.ui.saved.SavedGalleryFragment"
         android:label="fragment_saved_gallery"
         tools:layout="@layout/fragment_saved_gallery" />
 </navigation>
