@@ -1,4 +1,4 @@
-package com.codinginflow.imagesearchapp
+package com.codinginflow.imagesearchapp.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.codinginflow.imagesearchapp.R
 import com.codinginflow.imagesearchapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

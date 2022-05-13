@@ -1,6 +1,7 @@
 package com.codinginflow.imagesearchapp.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 //import com.codinginflow.imagesearchapp.data.UnsplashDatabase
@@ -29,6 +30,7 @@ object AppModule {
     @Singleton
     fun provideUnsplashApi(retrofit: Retrofit): UnsplashApi =
         retrofit.create(UnsplashApi::class.java)
+
 
     /*
     @Singleton

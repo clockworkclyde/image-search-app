@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.codinginflow.imagesearchapp.R
 import com.codinginflow.imagesearchapp.databinding.ItemSavedPhotoBinding
 import com.codinginflow.imagesearchapp.models.InternalUnsplashPhoto
 
@@ -22,6 +21,7 @@ class InternalUnsplashPhotoAdapter(private val onPhotoClick: ((InternalUnsplashP
                     .load(photo.bmp)
                     .centerCrop()
                     .into(imageView)
+
             }
         }
     }
@@ -45,7 +45,7 @@ class InternalUnsplashPhotoAdapter(private val onPhotoClick: ((InternalUnsplashP
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-        val currentItem = currentList[position]
+        val currentItem = getItem(position)
         holder.bind(currentItem)
     }
 
