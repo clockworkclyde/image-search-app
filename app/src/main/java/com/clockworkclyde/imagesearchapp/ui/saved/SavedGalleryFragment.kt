@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.clockworkclyde.imagesearchapp.R
 import com.clockworkclyde.imagesearchapp.databinding.FragmentSavedGalleryBinding
+import com.clockworkclyde.imagesearchapp.ui.viewmodels.SavedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

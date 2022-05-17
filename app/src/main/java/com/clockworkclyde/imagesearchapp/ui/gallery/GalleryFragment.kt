@@ -14,6 +14,8 @@ import androidx.paging.LoadState
 import com.clockworkclyde.imagesearchapp.R
 import com.clockworkclyde.imagesearchapp.models.UnsplashPhoto
 import com.clockworkclyde.imagesearchapp.databinding.FragmentGalleryBinding
+import com.clockworkclyde.imagesearchapp.ui.viewmodels.GalleryViewModel
+import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,24 +28,31 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //postponeEnterTransition()
+        //        view.doOnPreDraw { startPostponedEnterTransition() }
 
         binding = FragmentGalleryBinding.bind(view)
-        val adapter = UnsplashPhotoAdapter(this)
+        val unsplashAdapter = UnsplashPhotoAdapter(this)
 
-        binding.apply {
-            recyclerView.setHasFixedSize(true)
-            recyclerView.adapter =
-                adapter.withLoadStateHeaderAndFooter(
-                    header = UnsplashPhotoLoadStateAdapter { adapter.retry() },
-                    footer = UnsplashPhotoLoadStateAdapter { adapter.retry() }
+        binding.recyclerView.apply {
+            setHasFixedSize(true)
+            itemAnimator = null
+            adapter =
+                unsplashAdapter.withLoadStateHeaderAndFooter(
+                    header = UnsplashPhotoLoadStateAdapter { unsplashAdapter.retry() },
+                    footer = UnsplashPhotoLoadStateAdapter { unsplashAdapter.retry() }
                 )
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
         }
 
         viewModel.photos.observe(viewLifecycleOwner) {
-            adapter.submitData(viewLifecycleOwner.lifecycle, it)
+            unsplashAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
-        adapter.addLoadStateListener { loadState ->
+        unsplashAdapter.addLoadStateListener { loadState ->
             binding.apply {
                 recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
                 progressBar.isVisible = loadState.source.refresh is LoadState.Loading
@@ -51,7 +60,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
                 textViewError.isVisible = loadState.source.refresh is LoadState.Error
 
                 // if its empty
-                if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && adapter.itemCount < 1) {
+                if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && unsplashAdapter.itemCount < 1) {
                     recyclerView.isVisible = false
                     textViewEmpty.isVisible = true
                 } else {
@@ -89,6 +98,12 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
     }
 
     override fun onItemClick(transitionView: View, photo: UnsplashPhoto) {
+        exitTransition = MaterialElevationScale(false).apply {
+            duration = resources.getInteger(R.integer.unsplash_motion_duration_large).toLong()
+        }
+        reenterTransition = MaterialElevationScale(true).apply {
+            duration = resources.getInteger(R.integer.unsplash_motion_duration_large).toLong()
+        }
         val photoDetailTransitionName = getString(R.string.photo_detail_transition_name)
         val extras = FragmentNavigatorExtras(transitionView to photoDetailTransitionName)
         val directions = GalleryFragmentDirections.actionGalleryFragmentToDetailsFragment2(photo)

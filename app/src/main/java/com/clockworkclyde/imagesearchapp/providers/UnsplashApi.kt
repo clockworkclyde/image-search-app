@@ -1,6 +1,7 @@
 package com.clockworkclyde.imagesearchapp.providers
 
 import com.clockworkclyde.imagesearchapp.BuildConfig
+import com.clockworkclyde.imagesearchapp.models.UnsplashPhoto
 import com.clockworkclyde.imagesearchapp.models.UnsplashResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -16,7 +17,7 @@ interface UnsplashApi {
     @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")
     @GET("search/photos")
     suspend fun searchPhotos(
-        @Query("query") query: String,
+        @Query("query") query: String? = null,
         @Query("page") page: Int = 0,
         @Query("per_page") perPage: Int = 10
     ): UnsplashResponse
@@ -24,8 +25,8 @@ interface UnsplashApi {
     @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")
     @GET("/photos")
     suspend fun getPhotosFeed(
-        @Query("query") query: String,
+        @Query("order_by") orderBy: String = "latest",
         @Query("page") page: Int = 0,
         @Query("per_page") perPage: Int = 10
-    )
+    ): List<UnsplashPhoto>
 }

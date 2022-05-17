@@ -23,7 +23,7 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.clockworkclyde.imagesearchapp.R
 import com.clockworkclyde.imagesearchapp.databinding.FragmentDetailsBinding
-import com.clockworkclyde.imagesearchapp.ui.saved.SavedViewModel
+import com.clockworkclyde.imagesearchapp.ui.viewmodels.SavedViewModel
 import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_details.*

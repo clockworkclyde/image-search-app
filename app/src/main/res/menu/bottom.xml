@@ -2,13 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/feedFragment"
         android:icon="@drawable/ic_baseline_photo_library_24"
-        android:title="Gallery"
-        android:id="@+id/galleryFragment"/>
+        android:title="@string/feed_menu_title" />
 
     <item
+        android:id="@+id/galleryFragment"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_menu_title" />
+
+    <item
+        android:title="@string/profile_menu_title"
+        android:icon="@drawable/ic_user"
+        android:id="@+id/myProfileFragment"/>
+
+    <item
+        android:id="@+id/savedGalleryFragment"
         android:icon="@drawable/ic_baseline_cloud_download_24"
-        android:title="Saved"
-        android:id="@+id/savedGalleryFragment"/>
+        android:title="Saved" />
 
 </menu>

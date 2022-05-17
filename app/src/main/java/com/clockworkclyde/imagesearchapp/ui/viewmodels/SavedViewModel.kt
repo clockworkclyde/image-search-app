@@ -1,4 +1,4 @@
-package com.clockworkclyde.imagesearchapp.ui.saved
+package com.clockworkclyde.imagesearchapp.ui.viewmodels
 
 import android.graphics.Bitmap
 import androidx.hilt.lifecycle.ViewModelInject

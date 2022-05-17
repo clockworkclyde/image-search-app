@@ -40,7 +40,7 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                 if (position != RecyclerView.NO_POSITION) {
                     val item = getItem(position)
                     if (item != null) {
-                        it.transitionName = it.context.getString(R.string.photo_detail_transition_name)
+                        it.transitionName = it.context.getString(R.string.gallery_transition_name)
                         listener.onItemClick(it, item)
                     }
                 }

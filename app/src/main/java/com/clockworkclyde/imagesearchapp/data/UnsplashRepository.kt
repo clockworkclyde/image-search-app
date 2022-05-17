@@ -20,6 +20,14 @@ class UnsplashRepository @Inject constructor(private val unsplashApi: UnsplashAp
             pagingSourceFactory = { UnsplashPagingSource(unsplashApi, query) }
         ).liveData
 
-
+    fun getFeedResults(orderBy: String) =
+        Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                maxSize = 100,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { FeedPagingSource(unsplashApi, orderBy)}
+        ).liveData
 
 }

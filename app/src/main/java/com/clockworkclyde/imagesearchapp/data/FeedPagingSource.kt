@@ -8,9 +8,9 @@ import java.io.IOException
 
 private const val UNSPLASH_PAGING_STARTING_INDEX = 1
 
-class UnsplashPagingSource(
+class FeedPagingSource (
     private val unsplashApi: UnsplashApi,
-    private val query: String
+    private val orderBy: String
 ) : PagingSource<Int, UnsplashPhoto>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UnsplashPhoto> {
@@ -18,8 +18,7 @@ class UnsplashPagingSource(
 
         return try {
 
-            val response = unsplashApi.searchPhotos(query, position, params.loadSize)
-            val photos = response.results
+            val photos = unsplashApi.getPhotosFeed(orderBy, position, params.loadSize)
 
             LoadResult.Page(
                 data = photos,
