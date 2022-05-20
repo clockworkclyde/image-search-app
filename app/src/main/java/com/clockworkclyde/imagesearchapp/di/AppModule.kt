@@ -1,6 +1,8 @@
 package com.clockworkclyde.imagesearchapp.di
 
-//import com.codinginflow.imagesearchapp.data.UnsplashDatabase
+import android.app.Application
+import androidx.room.Room
+import com.clockworkclyde.imagesearchapp.database.UnsplashDatabase
 import com.clockworkclyde.imagesearchapp.providers.UnsplashApi
 import dagger.Module
 import dagger.Provides
@@ -28,18 +30,17 @@ object AppModule {
         retrofit.create(UnsplashApi::class.java)
 
 
-    /*
     @Singleton
     @Provides
     fun provideUnsplashDatabase(
-        app: Application) = Room.databaseBuilder(app, UnsplashDatabase::class.java, "unsplash_database")
+        app: Application
+    ) = Room.databaseBuilder(app, UnsplashDatabase::class.java, "unsplash_database")
         .fallbackToDestructiveMigration()
         .build()
 
     @Provides
     fun provideUnsplashDao(database: UnsplashDatabase) = database.unsplashPhotoDao()
 
-    */
-    }
+}
 
 

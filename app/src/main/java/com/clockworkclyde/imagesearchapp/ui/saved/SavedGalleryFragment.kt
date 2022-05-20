@@ -53,7 +53,6 @@ class SavedGalleryFragment : Fragment(R.layout.fragment_saved_gallery) {
         viewModel.savedFiles.observe(viewLifecycleOwner) {
             it?.let {
                 photoAdapter.submitList(it)
-                println("adapter size is ${photoAdapter.itemCount}, and ${photoAdapter.currentList}")
 
             } ?: Toast.makeText(context, "Failed to display recycler", Toast.LENGTH_SHORT)
                 .show()

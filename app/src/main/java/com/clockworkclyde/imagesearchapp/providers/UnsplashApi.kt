@@ -25,7 +25,7 @@ interface UnsplashApi {
     @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")
     @GET("/photos")
     suspend fun getPhotosFeed(
-        @Query("order_by") orderBy: String = "latest",
+        @Query("order_by") orderBy: String? = "latest",
         @Query("page") page: Int = 0,
         @Query("per_page") perPage: Int = 10
     ): List<UnsplashPhoto>

@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
@@ -17,7 +18,11 @@ import com.clockworkclyde.imagesearchapp.databinding.FragmentGalleryBinding
 import com.clockworkclyde.imagesearchapp.ui.viewmodels.GalleryViewModel
 import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class GalleryFragment : Fragment(R.layout.fragment_gallery),
     UnsplashPhotoAdapter.OnItemClickListener {
@@ -48,8 +53,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
             }
         }
 
-        viewModel.photos.observe(viewLifecycleOwner) {
-            unsplashAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.photos.collectLatest {
+                unsplashAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+            }
         }
 
         unsplashAdapter.addLoadStateListener { loadState ->

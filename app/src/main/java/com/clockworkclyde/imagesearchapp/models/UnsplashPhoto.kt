@@ -1,14 +1,19 @@
 package com.clockworkclyde.imagesearchapp.models
 
 import android.os.Parcelable
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
+@Entity
 @Parcelize
 data class UnsplashPhoto(
+    @PrimaryKey
     val id: String,
     val description: String?,
-    val urls: UnsplashPhotoUrls,
-    val user: UnsplashUser,
+    @Embedded val urls: UnsplashPhotoUrls,
+    @Embedded val user: UnsplashUser,
 
     ) : Parcelable {
 
